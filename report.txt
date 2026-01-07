@@ -1,0 +1,41 @@
+I have added the main file which i run using kaggle as origin medical in assets
+Task-2: Image Segmentation Using Deep Learning
+1. Introduction
+
+Image segmentation aims to assign a semantic label to each pixel in an image. In this task, a deep learning–based segmentation model was developed to accurately identify regions of interest in highly imbalanced images, where foreground pixels constitute less than 1% of the total image area.
+
+2. Dataset Description
+
+The dataset consists of RGB images and corresponding binary annotation masks. Each mask highlights the target region, while the remaining pixels represent the background. An 80:20 split was applied to create training and testing subsets, ensuring that test images were completely unseen during training.
+
+3. Methodology
+
+A U-Net architecture was employed due to its effectiveness in pixel-level segmentation tasks. The model uses an encoder–decoder structure with skip connections to preserve spatial information.
+
+To address severe class imbalance, He (Kaiming) initialization was applied to all convolutional layers to ensure stable gradient flow during early training.
+
+4. Loss Function and Training Strategy
+
+A two-stage training strategy was adopted:
+
+Stage 1: Weighted Binary Cross-Entropy (BCE) loss to stabilize initial learning
+
+Stage 2: Combined loss consisting of weighted BCE and Dice loss to improve overlap accuracy
+
+Gradient clipping was used to prevent unstable updates.
+
+5. Evaluation Metrics
+
+Due to class imbalance, pixel accuracy was not used as a primary metric. Instead, the following metrics were employed:
+
+Dice Coefficient
+
+Intersection over Union (IoU)
+
+6. Results and Discussion
+
+The staged training strategy successfully prevented the model from collapsing to trivial background predictions. Dice and IoU scores improved consistently across epochs, demonstrating effective learning of minority foreground regions.
+
+7. Conclusion
+
+This work demonstrates that segmentation under extreme class imbalance requires specialized loss functions and training strategies. The proposed approach achieved stable and meaningful segmentation results and is suitable for real-world applications involving sparse target regions.
